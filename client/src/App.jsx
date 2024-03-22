@@ -2,9 +2,24 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import ReactGA4 from "react-ga4";
+
+
+const initializeGA4 = async () => {
+  const measurementId = 'G-3Q5XMQGSMG';
+  try {
+    await ReactGA4.initialize(measurementId);
+  } catch (error) {
+    console.error('Failed to initialize GA4:', error);
+  }
+};
 
 function App() {
   const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    initializeGA4();
+  }, []);
 
   return (
     <>
@@ -19,7 +34,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          gacount is {count}
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
