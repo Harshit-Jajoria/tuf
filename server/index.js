@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import userRoutes from './routes/user.js';
+import mysql from 'mysql2/promise';
+
 
 import { port } from './constants.js';
 import { syncModels } from './utils/connectDb.js';
