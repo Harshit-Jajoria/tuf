@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Table.css';
+import { backend_url } from '../constants';
 
 const Table = () => {
   const [userData, setUserData] = useState([]);
@@ -14,7 +15,7 @@ const Table = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/user?page=${currentPage}&pageSize=3`
+        `${backend_url}/user?page=${currentPage}&pageSize=3`
       );
       setUserData(response.data.users);
       setTotalPages(Math.ceil(response.data.totalCount / 3));
