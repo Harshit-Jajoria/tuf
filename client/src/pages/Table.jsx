@@ -14,11 +14,10 @@ const Table = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/user?page=${currentPage}&pageSize=4`
+        `http://localhost:5000/user?page=${currentPage}&pageSize=3`
       );
-      setUserData(response.data);
-      // Assuming the API response includes the total number of pages
-      setTotalPages(Math.ceil(response.headers['x-total-count'] / 4));
+      setUserData(response.data.users);
+      setTotalPages(Math.ceil(response.data.totalCount / 3));
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -54,7 +53,11 @@ const Table = () => {
       <div className="UserPage-pagination">
         {Array.from({ length: totalPages }, (_, index) => index + 1).map(
           (page) => (
-            <button key={page} onClick={() => handlePageChange(page)}>
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={currentPage === page ? 'active' : ''}
+            >
               {page}
             </button>
           )
