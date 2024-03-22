@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Home.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { backend_url } from '../constants';
 
 const Home = () => {
   const [input, setInput] = useState(localStorage.getItem('input') || '');
@@ -98,9 +99,17 @@ const Home = () => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/user', {
+
+      const languageNames = {
+        '54': 'C++',
+        '50': 'C',
+        '62': 'Java',
+        '71': 'Python'
+        // Add more language IDs and names as needed
+      };
+      const response = await axios.post(`${backend_url}/user`, {
         username: username,
-        code_language: languageId,
+        code_language: languageNames[languageId],
         input_code: input,
         stdin: userInput,
       });
