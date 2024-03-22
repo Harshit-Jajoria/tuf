@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Home.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [input, setInput] = useState(localStorage.getItem('input') || '');
@@ -10,6 +11,8 @@ const Home = () => {
   );
   const [userInput, setUserInput] = useState('');
   const [username, setUsername] = useState('');
+
+  const navigate=useNavigate()
 
   const handleInput = (event) => {
     setInput(event.target.value);
@@ -103,7 +106,7 @@ const Home = () => {
       });
 
       if (response.status === 201) {
-        console.log('User input saved successfully!',response.data);
+        console.log('User input saved successfully!', response.data);
         // Optionally, you can reset the input fields after successful save
         setInput('');
         setUserInput('');
@@ -120,6 +123,7 @@ const Home = () => {
     <div className="CodeEditor-container">
       <header className="CodeEditor-header">
         <h1>Harshit Online Compiler</h1>
+        <button onClick={() => navigate('/table')}>Saved Codes</button>
       </header>
 
       <div className="CodeEditor-content">
