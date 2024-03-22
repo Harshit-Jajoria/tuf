@@ -1,11 +1,13 @@
 import { Sequelize } from 'sequelize';
 import { database, dialect, host, password, user } from '../constants.js';
 import UserModel from '../model/User.js';
-
+import mysql2 from 'mysql2';
 const sequelize = new Sequelize(database, user, password, {
   host: host,
   dialect: dialect,
+  dialectModule: mysql2, 
 });
+
 
 // Define models
 const models = {
