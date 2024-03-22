@@ -4,9 +4,8 @@ export const port = 5000;
 // export const password = 'hello@1234';
 // export const dialect = 'mysql';
 // export const database = 'tuf_db';
-
-export const host = 'database-2.cds0s4u0uw75.ap-south-1.rds.amazonaws.com';
+export const host = 'database-1.cds0s4u0uw75.ap-south-1.rds.amazonaws.com';
 export const user = 'admin';
-export const password = 'QHTfyWaezX!32Ng';
+export const password = 'BeZ1tm5tDhzY0TqyhLR9';
 export const dialect = 'mysql';
 export const database = 'tuf_db';

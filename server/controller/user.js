@@ -6,13 +6,15 @@ import redisClient from '../utils/connectRedis.js';
 export const createUser = async (req, res) => {
   try {
     // Extract data from the request body
-    const { username, code_language, input_code } = req.body;
+    const { username, code_language, input_code,stdin } = req.body;
+    console.log('createuser called', username, code_language, input_code);
 
     // Create a new user using the UserModel
     const user = await UserModel.create({
       username,
       code_language,
       input_code,
+      stdin
     });
 
     // Return the newly created user

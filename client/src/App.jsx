@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ReactGA4 from 'react-ga4';
 import Home from './pages/Home';
+import Table from './pages/Table';
 
 const initializeGA4 = async () => {
   const measurementId = 'G-3Q5XMQGSMG';
@@ -21,6 +22,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/table" element={<Table />}></Route>
+
       </Routes>
     </BrowserRouter>
   );

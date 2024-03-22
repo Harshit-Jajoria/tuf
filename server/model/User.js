@@ -24,6 +24,10 @@ const UserModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    stdin:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     input_code: {
       type: DataTypes.STRING,
       allowNull: true,

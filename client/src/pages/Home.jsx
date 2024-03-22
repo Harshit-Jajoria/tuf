@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import './Home.css';
+import axios from 'axios';
 
 const Home = () => {
   const [input, setInput] = useState(localStorage.getItem('input') || '');
   const [output, setOutput] = useState('');
-  const [languageId, setLanguageId] = useState(localStorage.getItem('language_Id') || '71');
+  const [languageId, setLanguageId] = useState(
+    localStorage.getItem('language_Id') || '71'
+  );
   const [userInput, setUserInput] = useState('');
+  const [username, setUsername] = useState('');
 
   const handleInput = (event) => {
     setInput(event.target.value);
@@ -25,20 +29,24 @@ const Home = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://judge0-ce.p.rapidapi.com/submissions', {
-        method: 'POST',
-        headers: {
-          'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
-          'x-rapidapi-key': 'b446598641msh9d0150766c105efp18b848jsn8a6329888a71', // Put your RapidAPI key here
-          'content-type': 'application/json',
-          accept: 'application/json',
-        },
-        body: JSON.stringify({
-          source_code: input,
-          stdin: userInput,
-          language_id: languageId,
-        }),
-      });
+      const response = await fetch(
+        'https://judge0-ce.p.rapidapi.com/submissions',
+        {
+          method: 'POST',
+          headers: {
+            'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
+            'x-rapidapi-key':
+              'b446598641msh9d0150766c105efp18b848jsn8a6329888a71', // Put your RapidAPI key here
+            'content-type': 'application/json',
+            accept: 'application/json',
+          },
+          body: JSON.stringify({
+            source_code: input,
+            stdin: userInput,
+            language_id: languageId,
+          }),
+        }
+      );
 
       const jsonResponse = await response.json();
 
@@ -60,7 +68,8 @@ const Home = () => {
             method: 'GET',
             headers: {
               'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
-              'x-rapidapi-key': 'b446598641msh9d0150766c105efp18b848jsn8a6329888a71', // Put your RapidAPI key here
+              'x-rapidapi-key':
+                'b446598641msh9d0150766c105efp18b848jsn8a6329888a71', // Put your RapidAPI key here
               'content-type': 'application/json',
             },
           });
@@ -84,6 +93,29 @@ const Home = () => {
     }
   };
 
+  const handleSave = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/user', {
+        username: username,
+        code_language: languageId,
+        input_code: input,
+        stdin: userInput,
+      });
+
+      if (response.status === 201) {
+        console.log('User input saved successfully!',response.data);
+        // Optionally, you can reset the input fields after successful save
+        setInput('');
+        setUserInput('');
+        setUsername('');
+      } else {
+        console.error('Failed to save user input:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error saving user input:', error);
+    }
+  };
+
   return (
     <div className="CodeEditor-container">
       <header className="CodeEditor-header">
@@ -92,35 +124,39 @@ const Home = () => {
 
       <div className="CodeEditor-content">
         <div className="CodeEditor-left-section">
-            <div className='leftup'>
-          <div className="CodeEditor-dropdown">
-            <label htmlFor="tags" className="heading">
-              <b>Language:</b>
-            </label>
-            <select
-              value={languageId}
-              onChange={handleLanguageChange}
-              id="tags"
-              className="form-control form-inline language"
-            >
-              <option value="54">C++</option>
-              <option value="50">C</option>
-              <option value="62">Java</option>
-              <option value="71">Python</option>
-            </select>
-          </div>
-          <div className="CodeEditor-username-input">
-            <label htmlFor="username" className="heading">
-              <b>Username:</b>
-            </label>
-            <input
-              type="text"
-              id="username"
-              className="form-control"
-              placeholder="Enter your username"
-            />
-          </div>
-          <button className="btn CodeEditor-save-button">Save</button>
+          <div className="leftup">
+            <div className="CodeEditor-dropdown">
+              <label htmlFor="tags" className="heading">
+                <b>Language:</b>
+              </label>
+              <select
+                value={languageId}
+                onChange={handleLanguageChange}
+                id="tags"
+                className="form-control form-inline language"
+              >
+                <option value="54">C++</option>
+                <option value="50">C</option>
+                <option value="62">Java</option>
+                <option value="71">Python</option>
+              </select>
+            </div>
+            <div className="CodeEditor-username-input">
+              <label htmlFor="username" className="heading">
+                <b>Username:</b>
+              </label>
+              <input
+                type="text"
+                id="username"
+                className="form-control"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <button className="btn CodeEditor-save-button" onClick={handleSave}>
+              Save
+            </button>
           </div>
           <textarea
             required
