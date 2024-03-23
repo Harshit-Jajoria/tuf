@@ -13,7 +13,7 @@ const Home = () => {
   const [userInput, setUserInput] = useState('');
   const [username, setUsername] = useState('');
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const handleInput = (event) => {
     setInput(event.target.value);
@@ -99,12 +99,11 @@ const Home = () => {
 
   const handleSave = async () => {
     try {
-
       const languageNames = {
-        '54': 'C++',
-        '50': 'C',
-        '62': 'Java',
-        '71': 'Python'
+        54: 'C++',
+        50: 'C',
+        62: 'Java',
+        71: 'Python',
         // Add more language IDs and names as needed
       };
       const response = await axios.post(`${backend_url}/user`, {
@@ -189,6 +188,7 @@ const Home = () => {
         </div>
         <div className="CodeEditor-right-section">
           <div className="CodeEditor-right-up">
+            <div>Std Input</div>
             <textarea
               id="input"
               onChange={handleUserInput}
@@ -196,6 +196,7 @@ const Home = () => {
             ></textarea>
           </div>
           <div className="CodeEditor-right-bottom">
+            <div>Output</div>
             <pre id="output">{output}</pre>
           </div>
         </div>

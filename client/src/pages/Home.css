@@ -76,16 +76,21 @@ body {
 }
 .leftup {
   display: flex;
+  justify-content: space-between;
 }
 /* Style for dropdown, username input, and save button */
 .CodeEditor-dropdown,
-.CodeEditor-username-input,
+.CodeEditor-username-input {
+  /* width: calc(33.33% - 10px);  */
+  /* margin-right: 10px;  */
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
 .CodeEditor-save-button {
-  width: calc(33.33% - 10px); /* Adjusted width */
-  margin-right: 10px; /* Added margin */
+  padding: 50px;
   margin-bottom: 10px;
 }
-
 /* Style for code textarea */
 .CodeEditor-code-textarea {
   width: 100%; /* Full width */
@@ -117,13 +122,19 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  overflow: auto;
+  overflow: hidden;
+}
+.CodeEditor-right-up div {
+  color: #007bff;
+  font-size: larger;
+  margin-bottom: 5px;
 }
 
 /* Style for input textarea */
 .CodeEditor-input-textarea {
   width: 100%;
-  height: 100%;
+  height: 85%;
+  resize: none;
 }
 
 /* Style for right bottom */
@@ -135,6 +146,14 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: auto;
+  font-size: larger;
+  margin-up: 20px;
+}
+
+.CodeEditor-right-bottom div {
+  color: #007bff;
+  font-size: larger;
+  margin-bottom: 5px;
 }
 
 /* Heading style */
@@ -172,7 +191,7 @@ textarea {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  resize: vertical;
+  resize: none;
 }
 
 /* Pre style */
