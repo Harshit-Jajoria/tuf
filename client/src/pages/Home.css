@@ -17,11 +17,42 @@ body {
 
 /* Header style */
 .CodeEditor-header {
-  background-color: #007bff;
+  background-color: #30ed82;
   color: #fff;
-  padding: 20px;
   width: 100%;
   text-align: center;
+  position: relative; /* Add position relative */
+}
+
+/* Heading style */
+.CodeEditor-header h1 {
+  padding: 4px; /* Remove default margin */
+  flex: 1; /* Let the heading take up remaining space */
+  color: black;
+  font-weight: 700;
+}
+
+/* Button style */
+.CodeEditor-header button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  padding: 10px 20px;
+
+  background-color: #f710dc; /* Coral color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: black;
+  font-weight: 600;
+}
+
+/* Button hover effect */
+.CodeEditor-header button:hover {
+  background-color: #f73de1; /* Darker coral color on hover */
 }
 
 /* Content style */
