@@ -131,7 +131,9 @@ const Home = () => {
     <div className="CodeEditor-container">
       <header className="CodeEditor-header">
         <h1>Harshit Online Compiler</h1>
+        <button onClick={() => navigate('/test')}>test</button>
         <button onClick={() => navigate('/table')}>Saved Codes</button>
+
       </header>
 
       <div className="CodeEditor-content">
