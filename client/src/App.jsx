@@ -9,8 +9,8 @@ const initializeGA4 = async () => {
   const measurementId = 'G-3Q5XMQGSMG';
   try {
     await ReactGA4.initialize(measurementId);
-  } catch (error) {
-    console.error('Failed to initialize GA4:', error);
+  } catch (e) {
+    console.error('Failed to initialize GA4:', e);
   }
 };
 
